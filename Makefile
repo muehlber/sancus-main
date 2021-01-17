@@ -78,8 +78,14 @@ sancus-%:
 ifeq ($(REMOTE_IS_SSH), 1)
 	git clone https://github.com/sancus-tee/$@.git
 else
-	git clone git@github.com:sancus-tee/$@.git
+	if [ "$@" = "sancus-compiler" ]; then \
+          git clone git@github.com:fritzalder/sancus-compiler.git; \
+          else \
+	git clone git@github.com:sancus-tee/$@.git; \
+          fi
 endif
+	if [ "$@" = "sancus-core" ]; then cd $@ && git checkout irq; fi
+	if [ "$@" = "sancus-compiler" ]; then cd $@ && git checkout irq_ssa; fi
 
 %-update: sancus-%
 	cd sancus-$*/ ; git pull
