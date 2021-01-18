@@ -17,7 +17,6 @@ all: sancus-core sancus-compiler sancus-support sancus-examples
 install_deps: debian-deps pip-deps ti-mspgcc clang-sancus
 install: install_deps core-install compiler-install support-install sancus-examples
 test: examples-sim
-test-rt: mintimer
 
 # Convenience targets for developers
 update: core-update compiler-update support-update examples-update
@@ -120,6 +119,8 @@ examples-clean:
 
 
 # ---------------------------------------------------------------------------
+examples-rt: mintimer
+
 mintimer:
 	$(MAKE) -C sancus-riot/sancus-testbed/mintimer
 	$(MAKE) -C sancus-riot/sancus-testbed/mintimer sim
