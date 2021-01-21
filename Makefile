@@ -119,19 +119,16 @@ examples-clean:
 
 
 # ---------------------------------------------------------------------------
-examples-rt: rt-hello-sancus rt-mintimer rt-ipc_pingpong
+examples-rt: rt-sec_mintimer rt-sec_threads
 
-rt-hello-sancus:
-	$(MAKE) -C sancus-riot/sancus-testbed/hello-sancus
-	$(MAKE) -C sancus-riot/sancus-testbed/hello-sancus sim
+rt-sec_mintimer:
+	$(MAKE) -C sancus-riot/sancus-testbed/secure_mintimer
+	$(MAKE) -C sancus-riot/sancus-testbed/secure_mintimer sim
 
-rt-mintimer:
-	$(MAKE) -C sancus-riot/sancus-testbed/mintimer
-	$(MAKE) -C sancus-riot/sancus-testbed/mintimer sim
+rt-sec_threads:
+	$(MAKE) -C sancus-riot/sancus-testbed/secure_threads
+	$(MAKE) -C sancus-riot/sancus-testbed/secure_threads sim
 
-rt-ipc_pingpong:
-	$(MAKE) -C sancus-riot/sancus-testbed/ipc_pingpong
-	$(MAKE) -C sancus-riot/sancus-testbed/ipc_pingpong sim
 
 # ---------------------------------------------------------------------------
 clean: ti-mspgcc-clean llvm-clean
