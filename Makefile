@@ -119,7 +119,7 @@ examples-clean:
 
 
 # ---------------------------------------------------------------------------
-examples-rt: rt-sec_mintimer rt-sec_threads
+examples-rt: rt-sec_mintimer rt-sec_threads rt-usenix
 
 rt-sec_mintimer:
 	$(MAKE) -C sancus-riot/sancus-testbed/secure_mintimer
@@ -129,6 +129,9 @@ rt-sec_threads:
 	$(MAKE) -C sancus-riot/sancus-testbed/secure_threads
 	$(MAKE) -C sancus-riot/sancus-testbed/secure_threads sim
 
+rt-usenix:
+	$(MAKE) -C sancus-riot/sancus-testbed/usenix
+	$(MAKE) -C sancus-riot/sancus-testbed/usenix sim
 
 # ---------------------------------------------------------------------------
 clean: ti-mspgcc-clean llvm-clean
