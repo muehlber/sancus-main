@@ -96,7 +96,9 @@ endif
 	git submodule init &&   \
 	git submodule update && \
 	$(CMAKE) -DCMAKE_INSTALL_PREFIX=$(SANCUS_INSTALL_PREFIX) \
-             -DSECURITY=$(SANCUS_SECURITY) -DMASTER_KEY=$(SANCUS_KEY) ..
+             -DSECURITY=$(SANCUS_SECURITY) -DMASTER_KEY=$(SANCUS_KEY) \
+             -DATOMICITY_MONITOR=1 \
+             ..
 
 %-install: %-build
 	$(info .. Installing sancus-$* to $(SANCUS_INSTALL_PREFIX))
@@ -119,7 +121,7 @@ examples-clean:
 
 
 # ---------------------------------------------------------------------------
-examples-rt: rt-sec_mintimer rt-sec_threads rt-usenix
+examples-rt: rt-sec_mintimer rt-sec_threads
 
 rt-sec_mintimer:
 	$(MAKE) -C sancus-riot/sancus-testbed/secure_mintimer
@@ -140,6 +142,7 @@ clean: ti-mspgcc-clean llvm-clean
 	$(RM) $(LLVM_PKG_DEB) $(TI_MSPGCC_PKG_DEB)
 
 distclean: clean ti-mspgcc-distclean llvm-distclean
+	$(RM) ti-mspgcc sancus-clang debian-deps pip-deps clang-deb-install
 	$(RM) sancus-core sancus-compiler sancus-support sancus-examples
 
 uninstall: distclean
